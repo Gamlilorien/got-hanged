@@ -1,0 +1,45 @@
+body {
+    font-family: 'Cormorant Infant', times, serif;
+    text-align: center;
+    color: white;
+    background-color: black;
+}
+
+header {
+    margin: 44px 0 22px 0;
+}
+
+h2 {
+    font-size: 2rem;
+    line-height: 2;
+    text-align: center;
+}
+
+h3 {
+    font-size: 1.5rem;
+    line-height: 1.5;
+}
+
+.banner-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    /* margin: 0 0 20px 0; */
+}
+
+section {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+.leftImage {
+    width: 30%;
+}
+
+footer {
+    margin: 44px 0 44px 0;
+    font-size: .5rem;
+}
