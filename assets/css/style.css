@@ -39,6 +39,10 @@ section {
     width: 30%;
 }
 
+.border-red {
+    border: 2px solid #f90d1c;
+}
+
 footer {
     margin: 44px 0 44px 0;
     font-size: .5rem;
