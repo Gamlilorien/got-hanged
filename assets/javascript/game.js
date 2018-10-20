@@ -344,22 +344,13 @@
     var cLetters = objSelected.letters;
     var toWin = objSelected.win;
 
-    // Now run loop to determine visible characters for each name letter (or show underscore)
+    // Now run loop to determine underscore placeholders
     for (var i = 0; i < nameLength; i++) {
         var x = cLetters[i];
-            // We need a way to determine if the array userGuesses is undefined, otherwise first iteration will be UNDEFINED
-            // if (visibleLetters === "undefined") {
-            //     var visibleLetters = "_a";
-            // } else {
-                // First iteration simply needs an underscore
-                var visibleLetters = visibleLetters + " _";
-                // var visibleLEtters = visibleLetters.replace("undefined", "");
-            // }
-        // }
+            var visibleLetters = visibleLetters + " _";
     };
         // Now set this value to the HTML
         document.getElementById("visibleLetters").innerHTML = visibleLetters.replace("undefined", "");
-
 
     // ****************************************
     // Capture user keystroke and set to variable named userGuesses (which will be an array of all values the user has entered)
@@ -436,6 +427,8 @@
             };
 
             // Select new object
+            document.getElementById("cName").innerHTML = "Who was-ith I?";
+            document.getElementById("cDeath").innerHTML = "";
          };
         // Condition #1 - new letter does NOT exist in name value, then subtract -1 from the guessesRemaining variable
 
