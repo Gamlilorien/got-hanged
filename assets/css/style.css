@@ -47,3 +47,7 @@ footer {
     margin: 44px 0 44px 0;
     font-size: .5rem;
 }
+
+button {
+    margin-top: 10px;
+}

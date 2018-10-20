@@ -3,6 +3,16 @@
     var guessesRemaining = 12;
     document.getElementById("guessesRemaining").innerHTML = guessesRemaining;
 
+    var defaultImage = document.getElementById("cImage").innerHTML;
+
+    function newGame () {
+        document.getElementById("cName").innerHTML = "Who was-ith I?";
+        document.getElementById("cImage").innerHTML = defaultImage;
+        document.getElementById("cDeath").innerHTML = "";
+        document.getElementById("userGuesses").innerHTML = "";
+        return cRandom();
+    };
+
     var wins = 0;
     document.getElementById("wins").innerHTML = wins;
 
@@ -260,56 +270,61 @@
 
     // ****************************************
     // Have computer RANDOMLY select from 1 to 10
-    var objId = Math.floor(Math.random() * 10) +1;
-    // var objId = 5
+    function cRandom () {
+        var objId = Math.floor(Math.random() * 10) +1;
+        // var objId = 5
 
-    // Use switch statement to determine object to use
-        switch (objId) {
-            case 1:
-                objSelected = ned;
-                break;
-            
-            case 2:
-                objSelected = robert;
-                break;
-            
-            case 3:
-                objSelected = margaery;
-                break;
+        // Use switch statement to determine object to use
+            switch (objId) {
+                case 1:
+                    objSelected = ned;
+                    break;
+                
+                case 2:
+                    objSelected = robert;
+                    break;
+                
+                case 3:
+                    objSelected = margaery;
+                    break;
 
-            case 4:
-                objSelected = pycelle;
-                break;
+                case 4:
+                    objSelected = pycelle;
+                    break;
 
-            case 5:
-                objSelected = tywin;
-                break;
+                case 5:
+                    objSelected = tywin;
+                    break;
 
-            case 6:
-                objSelected = petyr;
-                break;
+                case 6:
+                    objSelected = petyr;
+                    break;
 
-            case 7:
-                objSelected = ygritte;
-                break;
+                case 7:
+                    objSelected = ygritte;
+                    break;
 
-            case 8:
-                objSelected = joffrey;
-                break;
+                case 8:
+                    objSelected = joffrey;
+                    break;
 
-            case 9:
-                objSelected = hodor;
-                break;
+                case 9:
+                    objSelected = hodor;
+                    break;
 
-            case 10:
-                objSelected = robb;
-                break;
+                case 10:
+                    objSelected = robb;
+                    break;
 
-            default:
-                break;
-        };
+                default:
+                    break;
+            };
 
-        console.log(objSelected);
+        return objSelected;
+
+    };
+
+    var objSelected = cRandom();
 
     // Define playerGuess as an empty array
     var userGuesses = [];
@@ -402,6 +417,7 @@
 
 
             // Check to see if currentGuess score guessesRemaining needs to change
+            // Updated to only take a point if user enters a valid letter
             if (cLetters.indexOf(currentGuess) == -1) {
                 var z = document.getElementById("guessesRemaining").innerHTML
                 var z = z -1;
@@ -411,7 +427,7 @@
 
         // Added this to remove leading "undefined" text from string
         var visibleLetters = replaceUndefined(visibleLetters);
-        console.log(visibleLetters);
+        // console.log(visibleLetters);
         // Now set this value to the HTML
         document.getElementById("visibleLetters").innerHTML = visibleLetters;
 
@@ -433,12 +449,11 @@
             } else {
                 document.getElementById("wins").innerHTML = cScore +1;
             };
-
-            // Select new object
             
          };
-        // Condition #1 - new letter does NOT exist in name value, then subtract -1 from the guessesRemaining variable
 
 
     // END on KEYUP section
     };
+
+
