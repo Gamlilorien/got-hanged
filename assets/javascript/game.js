@@ -20,7 +20,7 @@
         "id" : 1,
         "image" : "assets/images/ned.png",
         "death" : "S1E9",
-        "win" : "n e d _ s t a r k",
+        "win" : " n e d _ s t a r k",
         "letters" : [
             "n",
             "e",
@@ -40,7 +40,7 @@
         "id" : 2,
         "image" : "assets/images/robert.png",
         "death" : "S1E7",
-        "win" : "r o b e r t _ b a r a t h e o n",
+        "win" : " r o b e r t _ b a r a t h e o n",
         "letters" : [
             "r",
             "o",
@@ -57,7 +57,8 @@
             "h",
             "e",
             "o",
-            "n"
+            "n",
+            " "
         ]
     
     };
@@ -67,7 +68,7 @@
         "id" : 3,
         "image" : "assets/images/margaery.png",
         "death" : "S6E10",
-        "win" : "m a r g a e r y _ t y r e l l",
+        "win" : " m a r g a e r y _ t y r e l l",
         "letters" : [
             "m",
             "a",
@@ -94,7 +95,7 @@
         "id" : 4,
         "image" : "assets/images/pycelle.png",
         "death" : "S6E10",
-        "win" : "g r a n d _ m a e s t e r _ p y c e l l e",
+        "win" : " g r a n d _ m a e s t e r _ p y c e l l e",
         "letters" : [
             "g",
             "r",
@@ -116,7 +117,8 @@
             "e",
             "l",
             "l",
-            "e"
+            "e",
+            " "
         ]
     
     };
@@ -126,7 +128,7 @@
         "id" : 5,
         "image" : "assets/images/tywin.png",
         "death" : "S4E10",
-        "win" : "l o r d _ t y w i n _ l a n n i s t e r",
+        "win" : " l o r d _ t y w i n _ l a n n i s t e r",
         "letters" : [
             "l",
             "o",
@@ -157,7 +159,7 @@
         "id" : 6,
         "image" : "assets/images/petyr.png",
         "death" : "S7E7",
-        "win" : "p e t y r _ b a e l i s h",
+        "win" : " p e t y r _ b a e l i s h",
         "letters" : [
             "p",
             "e",
@@ -181,7 +183,7 @@
         "id" : 7,
         "image" : "assets/images/ygritte.png",
         "death" : "S4E9",
-        "win" : "y g r i t t e",
+        "win" : " y g r i t t e",
         "letters" : [
             "y",
             "g",
@@ -199,7 +201,7 @@
         "id" : 8,
         "image" : "assets/images/joffery.png",
         "death" : "S4E2",
-        "win" : "p r i n c e _ j o f f r e y",
+        "win" : " p r i n c e _ j o f f r e y",
         "letters" : [
             "p",
             "r",
@@ -224,7 +226,7 @@
         "id" : 9,
         "image" : "assets/images/hodor.png",
         "death" : "S6E5",
-        "win" : "h o d o r",
+        "win" : " h o d o r",
         "letters" : [
             "h",
             "o",
@@ -240,7 +242,7 @@
         "id" : 10,
         "image" : "assets/images/robb.png",
         "death" : "S3E9",
-        "win" : "r o b _ s t a r k",
+        "win" : " r o b b _ s t a r k",
         "letters" : [
             "r",
             "o",
@@ -319,6 +321,21 @@
         return alphabet.indexOf(str);
       };
 
+    function replaceUndefined(str) {
+        return str.replace("undefined", "");
+    };
+
+    // Needed an easy way to get current visibleLetters outside of local scope
+    function myGuess() {
+        return document.getElementById("visibleLetters").innerHTML;
+    };
+
+    // Want to insert winning image url
+    function winImage(url) {
+        var x = document.getElementById("cImage").innerHTML;
+        return x.replace("assets/images/Question.png", url); 
+    };
+
     // Now extract the selected object values for the current round
     var nameLength = objSelected.name.length;
     var cName = objSelected.name;
@@ -380,30 +397,36 @@
             if (userGuesses.indexOf(x) != -1) {
                 // THEN insert letter
                     var visibleLetters = visibleLetters + " " + x;
+                   
 
             } else {
             // ELSE insert underscore
                 // We need a way to determine if the array userGuesses is undefined, otherwise first iteration will be UNDEFINED
-                if (visibleLetters === "undefined") {
-                    var visibleLetters = "_a";
-                } else {
+                // if (visibleLetters === "undefined") {
+                //     var visibleLetters = "_a";
+                // } else {
                     // First iteration simply needs an underscore
                     var visibleLetters = visibleLetters + " _";
-                }
+                // }
             }
         };
         // Added this to remove leading "undefined" text from string
-        var visibleLetters = visibleLetters.replace("undefined", "");
+        var visibleLetters = replaceUndefined(visibleLetters);
+        console.log(visibleLetters);
         // Now set this value to the HTML
         document.getElementById("visibleLetters").innerHTML = visibleLetters;
 
-        // Check to see if user won
-        if (visibleLetters === toWin) {
-            // If TRUE then show hidden items
-            document.getElementById("cName").innerHTML = cName;
-            document.getElementById("cImage").innerHTML = cImage;
-            document.getElementById("cDeath").innerHTML = "RIP: " + cDeath;
-        }
+         // Check to see if user won by seeing if both strings are the same (ie =0)
+        //  var y = toWin.localeCompare(visibleLetters.replace("undefined", ""));
+        var y = myGuess();
+
+         if (y === toWin) {
+             // If TRUE then show hidden items
+             console.log("user wins!");
+             document.getElementById("cName").innerHTML = cName;
+             document.getElementById("cImage").innerHTML = winImage(cImage);
+             document.getElementById("cDeath").innerHTML = "RIP: " + cDeath;
+         };
         // Condition #1 - new letter does NOT exist in name value, then subtract -1 from the guessesRemaining variable
 
         // Condition #2 - letter DOES exist so insert into HTML
