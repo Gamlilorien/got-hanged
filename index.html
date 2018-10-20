@@ -32,7 +32,7 @@
                 <div class="row">
                     <!-- Needs it's own full width column to center correctly -->
                     <div class="col-md-12">
-                        <h2>Whom was-ith I?</h2>
+                        <h2 id="cName">Whom was-ith I?</h2>
                     </div>
                 </div>
 
@@ -41,7 +41,8 @@
 
                     <!-- 1st (ie left) column, used for Character IMAGE -->
                     <div class="col-md-6">
-                        <img class="leftImage" src="assets/images/Question.png" alt="">
+                        <img id="cImage" class="leftImage" src="assets/images/Question.png" alt="">
+                        <h3 id="cDeath"></h3>
                     </div>
 
                     <!-- 2nd (ie right) column, used for STATS -->
@@ -49,13 +50,16 @@
                         <h3>Press any key to get started</h3>
 
                         <h3>Wins: </h3>
+                        <h3 id="wins"></h3>
 
                         <h3>Current Name</h3>
-                        <h3>_ _ _ _ _ _ _</h3>
+                        <h3 id="visibleLetters">_ _ _ _ _ _ _</h3>
 
-                        <h3>Number of gusses remaining:</h3>
+                        <h3>Number of guesses remaining:</h3>
+                        <h3 id="guessesRemaining"></h3>
 
                         <h3>Letters already guessed:</h3>
+                        <h3 id="userGuesses"></h3>
                     </div>
                 </div>
 

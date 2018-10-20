@@ -1,6 +1,10 @@
     // ****************************************
     // Define all global variables first
     var guessesRemaining = 12;
+    document.getElementById("guessesRemaining").innerHTML = guessesRemaining;
+
+    var wins = 0;
+    document.getElementById("wins").innerHTML = wins;
 
     var alphabet = [
         "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
@@ -16,10 +20,12 @@
         "id" : 1,
         "image" : "assets/images/ned.png",
         "death" : "S1E9",
+        "win" : "n e d _ s t a r k",
         "letters" : [
             "n",
             "e",
             "d",
+            " ",
             "s",
             "t",
             "a",
@@ -34,14 +40,23 @@
         "id" : 2,
         "image" : "assets/images/robert.png",
         "death" : "S1E7",
+        "win" : "r o b e r t _ b a r a t h e o n",
         "letters" : [
+            "r",
             "o",
-            "e",
             "b",
-            "h",
+            "e",
+            "r",
             "t",
+            " ",
+            "b",
             "a",
             "r",
+            "a",
+            "t",
+            "h",
+            "e",
+            "o",
             "n"
         ]
     
@@ -52,15 +67,24 @@
         "id" : 3,
         "image" : "assets/images/margaery.png",
         "death" : "S6E10",
+        "win" : "m a r g a e r y _ t y r e l l",
         "letters" : [
             "m",
             "a",
             "r",
             "g",
+            "a",
             "e",
+            "r",
             "y",
+            " ",
             "t",
-            "l"
+            "y",
+            "r",
+            "e",
+            "l",
+            "l",
+            " "
         ]
     
     };
@@ -70,20 +94,29 @@
         "id" : 4,
         "image" : "assets/images/pycelle.png",
         "death" : "S6E10",
+        "win" : "g r a n d _ m a e s t e r _ p y c e l l e",
         "letters" : [
             "g",
             "r",
             "a",
             "n",
             "d",
+            " ",
             "m",
+            "a",
             "e",
             "s",
             "t",
+            "e",
+            "r",
+            " ",
             "p",
             "y",
             "c",
-            "l"
+            "e",
+            "l",
+            "l",
+            "e"
         ]
     
     };
@@ -93,19 +126,28 @@
         "id" : 5,
         "image" : "assets/images/tywin.png",
         "death" : "S4E10",
+        "win" : "l o r d _ t y w i n _ l a n n i s t e r",
         "letters" : [
             "l",
             "o",
             "r",
             "d",
+            " ",
             "t",
             "y",
             "w",
             "i",
             "n",
+            " ",
+            "l",
             "a",
+            "n",
+            "n",
+            "i",
+            "s",
+            "t",
             "e",
-            "s"
+            "r"
         ]
     
     };
@@ -115,14 +157,17 @@
         "id" : 6,
         "image" : "assets/images/petyr.png",
         "death" : "S7E7",
+        "win" : "p e t y r _ b a e l i s h",
         "letters" : [
             "p",
             "e",
             "t",
             "y",
             "r",
+            " ",
             "b",
             "a",
+            "e",
             "l",
             "i",
             "s",
@@ -136,11 +181,13 @@
         "id" : 7,
         "image" : "assets/images/ygritte.png",
         "death" : "S4E9",
+        "win" : "y g r i t t e",
         "letters" : [
             "y",
             "g",
             "r",
             "i",
+            "t",
             "t",
             "e"
         ]
@@ -152,6 +199,7 @@
         "id" : 8,
         "image" : "assets/images/joffery.png",
         "death" : "S4E2",
+        "win" : "p r i n c e _ j o f f r e y",
         "letters" : [
             "p",
             "r",
@@ -159,9 +207,13 @@
             "n",
             "c",
             "e",
+            " ",
             "j",
             "o",
             "f",
+            "f",
+            "r",
+            "e",
             "y"
         ]
     
@@ -172,10 +224,12 @@
         "id" : 9,
         "image" : "assets/images/hodor.png",
         "death" : "S6E5",
+        "win" : "h o d o r",
         "letters" : [
+            "h",
             "o",
             "d",
-            "h",
+            "o",
             "r"
         ]
     
@@ -186,22 +240,27 @@
         "id" : 10,
         "image" : "assets/images/robb.png",
         "death" : "S3E9",
+        "win" : "r o b _ s t a r k",
         "letters" : [
             "r",
             "o",
             "b",
+            "b",
+            " ",
             "s",
             "t",
             "a",
+            "r",
             "k"
         ]
     
     };
 
     // ****************************************
-    // Have computer RANDOMLY select object by ID
+    // Have computer RANDOMLY select from 1 to 10
     var objId = Math.floor(Math.random() * 10) +1;
-    
+    // var objId = 5
+
     // Use switch statement to determine object to use
         switch (objId) {
             case 1:
@@ -266,6 +325,24 @@
     var cDeath = objSelected.death;
     var cImage = objSelected.image;
     var cLetters = objSelected.letters;
+    var toWin = objSelected.win;
+
+    // Now run loop to determine visible characters for each name letter (or show underscore)
+    for (var i = 0; i < nameLength; i++) {
+        var x = cLetters[i];
+            // We need a way to determine if the array userGuesses is undefined, otherwise first iteration will be UNDEFINED
+            // if (visibleLetters === "undefined") {
+            //     var visibleLetters = "_a";
+            // } else {
+                // First iteration simply needs an underscore
+                var visibleLetters = visibleLetters + " _";
+                // var visibleLEtters = visibleLetters.replace("undefined", "");
+            // }
+        // }
+    };
+        // Now set this value to the HTML
+        document.getElementById("visibleLetters").innerHTML = visibleLetters.replace("undefined", "");
+
 
     // ****************************************
     // Capture user keystroke and set to variable named userGuesses (which will be an array of all values the user has entered)
@@ -289,17 +366,44 @@
             console.log("ELSE " + userGuesses.indexOf(currentGuess) );
             //Then PUSH the currentGuess to the userGuesses array and subtract 1 from guessesRemaining variable
             userGuesses.push(currentGuess);
-            var guessesRemaining = guessesRemaining -1;
-            console.log(guessesRemaining);
-            console.log(userGuesses);
+            guessesRemaining -1;
 
+            // Update userGuesses within the HTML
+            document.getElementById("userGuesses").innerHTML = userGuesses;
+            document.getElementById("guessesRemaining").innerHTML = guessesRemaining;
         }
 
-        // Look for the error recieved when values are undefined, this is your IF condition for adding only NEW keystrokes to your array variable
+        // Now run loop to determine visible characters for each name letter (or show underscore)
+        for (var i = 0; i < nameLength; i++) {
+            var x = cLetters[i];
+            // IF letter has been guessed
+            if (userGuesses.indexOf(x) != -1) {
+                // THEN insert letter
+                    var visibleLetters = visibleLetters + " " + x;
 
-        // IF a NEW keystroke is entered by the user (see above)
-        // THEN IF userLetter patternCount()
+            } else {
+            // ELSE insert underscore
+                // We need a way to determine if the array userGuesses is undefined, otherwise first iteration will be UNDEFINED
+                if (visibleLetters === "undefined") {
+                    var visibleLetters = "_a";
+                } else {
+                    // First iteration simply needs an underscore
+                    var visibleLetters = visibleLetters + " _";
+                }
+            }
+        };
+        // Added this to remove leading "undefined" text from string
+        var visibleLetters = visibleLetters.replace("undefined", "");
+        // Now set this value to the HTML
+        document.getElementById("visibleLetters").innerHTML = visibleLetters;
 
+        // Check to see if user won
+        if (visibleLetters === toWin) {
+            // If TRUE then show hidden items
+            document.getElementById("cName").innerHTML = cName;
+            document.getElementById("cImage").innerHTML = cImage;
+            document.getElementById("cDeath").innerHTML = "RIP: " + cDeath;
+        }
         // Condition #1 - new letter does NOT exist in name value, then subtract -1 from the guessesRemaining variable
 
         // Condition #2 - letter DOES exist so insert into HTML
