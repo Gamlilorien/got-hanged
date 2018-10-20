@@ -199,7 +199,7 @@
     var joffrey = {
         "name" : "Prince Joffrey",
         "id" : 8,
-        "image" : "assets/images/joffery.png",
+        "image" : "assets/images/joffrey.png",
         "death" : "S4E2",
         "win" : " p r i n c e _ j o f f r e y",
         "letters" : [
@@ -374,11 +374,9 @@
             console.log("ELSE " + userGuesses.indexOf(currentGuess) );
             //Then PUSH the currentGuess to the userGuesses array and subtract 1 from guessesRemaining variable
             userGuesses.push(currentGuess);
-            guessesRemaining -1;
 
             // Update userGuesses within the HTML
             document.getElementById("userGuesses").innerHTML = userGuesses;
-            document.getElementById("guessesRemaining").innerHTML = guessesRemaining;
         }
 
         // Now run loop to determine visible characters for each name letter (or show underscore)
@@ -401,6 +399,16 @@
                 // }
             }
         };
+
+
+            // Check to see if currentGuess score guessesRemaining needs to change
+            if (cLetters.indexOf(currentGuess) == -1) {
+                var z = document.getElementById("guessesRemaining").innerHTML
+                var z = z -1;
+            
+                document.getElementById("guessesRemaining").innerHTML = z;
+            }
+
         // Added this to remove leading "undefined" text from string
         var visibleLetters = replaceUndefined(visibleLetters);
         console.log(visibleLetters);
@@ -427,8 +435,7 @@
             };
 
             // Select new object
-            document.getElementById("cName").innerHTML = "Who was-ith I?";
-            document.getElementById("cDeath").innerHTML = "";
+            
          };
         // Condition #1 - new letter does NOT exist in name value, then subtract -1 from the guessesRemaining variable
 
