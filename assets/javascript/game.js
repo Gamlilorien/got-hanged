@@ -426,10 +426,19 @@
              document.getElementById("cName").innerHTML = cName;
              document.getElementById("cImage").innerHTML = winImage(cImage);
              document.getElementById("cDeath").innerHTML = "RIP: " + cDeath;
+
+            //  Now increase the current score
+            var cScore = document.getElementById("wins").innerHTML;
+            if (cScore = "0") {
+                document.getElementById("wins").innerHTML = 1;
+            } else {
+                document.getElementById("wins").innerHTML = cScore +1;
+            };
+
+            // Select new object
          };
         // Condition #1 - new letter does NOT exist in name value, then subtract -1 from the guessesRemaining variable
 
-        // Condition #2 - letter DOES exist so insert into HTML
 
     // END on KEYUP section
     };
