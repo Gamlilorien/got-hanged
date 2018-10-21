@@ -6,12 +6,17 @@
     var defaultImage = document.getElementById("cImage").innerHTML;
 
     function newGame () {
-        document.getElementById("cName").innerHTML = "Who was-ith I?";
+        document.getElementById("cName").innerHTML = "Whom was-ith I?";
         document.getElementById("cImage").innerHTML = defaultImage;
         document.getElementById("cDeath").innerHTML = "";
         document.getElementById("userGuesses").innerHTML = "";
-        return cRandom();
+        // Need to reset JS variable too
+        userGuesses = [];
+        cRandom();
+        cStats();
+        setUnderscores();
     };
+    // var objSelected = newGame();
 
     var wins = 0;
     document.getElementById("wins").innerHTML = wins;
@@ -320,11 +325,12 @@
                     break;
             };
 
-        return objSelected;
+        // return objSelected;
 
     };
 
-    var objSelected = cRandom();
+    // Now call this function to setup the game
+    cRandom();
 
     // Define playerGuess as an empty array
     var userGuesses = [];
@@ -352,29 +358,40 @@
     };
 
     // Now extract the selected object values for the current round
-    var nameLength = objSelected.name.length;
-    var cName = objSelected.name;
-    var cDeath = objSelected.death;
-    var cImage = objSelected.image;
-    var cLetters = objSelected.letters;
-    var toWin = objSelected.win;
+    // Also need to be a function for re-setting
+    function cStats () {
+        nameLength = objSelected.name.length;
+        cName = objSelected.name;
+        cDeath = objSelected.death;
+        cImage = objSelected.image;
+        cLetters = objSelected.letters;
+        toWin = objSelected.win;
+    }
+
+    // now call this function on page load
+    cStats();
 
     // Now run loop to determine underscore placeholders
-    for (var i = 0; i < nameLength; i++) {
-        var x = cLetters[i];
+    // This needs to be a function....
+    function setUnderscores () {
+        for (var i = 0; i < nameLength; i++) {
+            var x = cLetters[i];
             var visibleLetters = visibleLetters + " _";
-    };
+        };
         // Now set this value to the HTML
         document.getElementById("visibleLetters").innerHTML = visibleLetters.replace("undefined", "");
+    }
+
+    // now call this function on page load
+    setUnderscores();
 
     // ****************************************
     // Capture user keystroke and set to variable named userGuesses (which will be an array of all values the user has entered)
     document.onkeyup = function(e) {
 
+        console.log(e);
         // get letter user typed and set as temporary varialbe currentGuess, also convert to lower case (just in case)
-        var currentGuess = e.key.toLowerCase();
-        console.log(currentGuess);
-        
+        var currentGuess = e.key.toLowerCase();        
     
     // IF is NOT a letter, ie if isLetter == -1 for NO INDEX
         if (isLetter(currentGuess) == -1) {
