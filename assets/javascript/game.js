@@ -12,6 +12,17 @@
         document.getElementById("userGuesses").innerHTML = "";
         // Need to reset JS variable too
         userGuesses = [];
+
+        // Noticed that game may repeat previous characters
+        // save previously guessed character Objects to new array to avoid duplication
+        // usedObjects = [];
+        // usedObjects.push(objSelected);
+        // Now run loop for the random object selection to avoid replaying same objects
+        // for (var i = 0; i < nameLength; i++) {
+        //     var x = cLetters[i];
+        //     var visibleLetters = visibleLetters + " _";
+        // };
+
         cRandom();
         cStats();
         setUnderscores();
@@ -460,20 +471,10 @@
              document.getElementById("cDeath").innerHTML = "RIP: " + cDeath;
 
             //  Now increase the current score
+            // Had the haredest time working the the global wins variable so did this as a work around
             var cScore = parseInt(document.getElementById("wins").innerHTML);
-            console.log("cScore was: " +cScore);
-
-            var nScore = cScore +1;
-            document.getElementById("wins").innerHTML = nScore;
-
-            // if (cScore = 0) {
-            //     console.log("was 0")
-            //     document.getElementById("wins").innerHTML = 1;
-            // } else {
-            //     console.log("+1?")
-            //     cScore = cScore +1;
-            //     document.getElementById("wins").innerHTML = cScore;
-            // };
+                var nScore = cScore +1;
+                document.getElementById("wins").innerHTML = nScore;
             
          };
 
