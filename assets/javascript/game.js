@@ -460,12 +460,20 @@
              document.getElementById("cDeath").innerHTML = "RIP: " + cDeath;
 
             //  Now increase the current score
-            var cScore = document.getElementById("wins").innerHTML;
-            if (cScore = "0") {
-                document.getElementById("wins").innerHTML = 1;
-            } else {
-                document.getElementById("wins").innerHTML = cScore +1;
-            };
+            var cScore = parseInt(document.getElementById("wins").innerHTML);
+            console.log("cScore was: " +cScore);
+
+            var nScore = cScore +1;
+            document.getElementById("wins").innerHTML = nScore;
+
+            // if (cScore = 0) {
+            //     console.log("was 0")
+            //     document.getElementById("wins").innerHTML = 1;
+            // } else {
+            //     console.log("+1?")
+            //     cScore = cScore +1;
+            //     document.getElementById("wins").innerHTML = cScore;
+            // };
             
          };
 
