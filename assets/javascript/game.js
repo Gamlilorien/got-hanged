@@ -5,6 +5,10 @@
 
     var defaultImage = document.getElementById("cImage").innerHTML;
 
+    // Added code to play background audio
+    var audio = new Audio("assets/got-theme.mp3");
+        audio.play();
+
     function newGame () {
         document.getElementById("cName").innerHTML = "Whom was-ith I?";
         document.getElementById("cImage").innerHTML = defaultImage;
@@ -26,6 +30,7 @@
         cRandom();
         cStats();
         setUnderscores();
+        audio.play();
     };
     // var objSelected = newGame();
 
@@ -463,7 +468,13 @@
         //  var y = toWin.localeCompare(visibleLetters.replace("undefined", ""));
         var y = myGuess();
 
+
          if (y === toWin) {
+            // Pause audio
+            audio.pause();
+            // Rewind song to the beginning
+            audio.currentTime = 0.0;
+
              // If TRUE then show hidden items
              console.log("user wins!");
              document.getElementById("cName").innerHTML = cName;
