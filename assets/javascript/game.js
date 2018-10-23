@@ -6,8 +6,12 @@
     var defaultImage = document.getElementById("cImage").innerHTML;
 
     // Added code to play background audio
-    var audio = new Audio("assets/got-theme.mp3");
+    var audio = new Audio("assets/audio/got-theme.mp3");
         audio.play();
+
+    var gameOverJingle = new Audio("assets/audio/lose-jingle.mp3");
+    var gameWinJingle = new Audio("assets/audio/win-jingle.mp3");
+    var swordSFX = new Audio("assets/audio/sword-hit.mp3");
 
     function newGame () {
         document.getElementById("cName").innerHTML = "Whom was-ith I?";
@@ -405,6 +409,8 @@
     // Capture user keystroke and set to variable named userGuesses (which will be an array of all values the user has entered)
     document.onkeyup = function(e) {
 
+        // Added Sword Hit sound effect
+        swordSFX.play();
         console.log(e);
         // get letter user typed and set as temporary varialbe currentGuess, also convert to lower case (just in case)
         var currentGuess = e.key.toLowerCase();        
@@ -474,6 +480,8 @@
             audio.pause();
             // Rewind song to the beginning
             audio.currentTime = 0.0;
+            gameWinJingle.play();
+
 
              // If TRUE then show hidden items
              console.log("user wins!");
