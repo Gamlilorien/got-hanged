@@ -8,7 +8,7 @@ In this project, I was tasked with creating a 'Word Guess' game themed in a part
 
 ### Technology Used
 
-* Typical HTML, CSS, and good old fashoned vanilla Javascript
+* Typical HTML, CSS, and good old fashioned vanilla Javascript
 * Bootstrap CSS framework for site grid layout and mobile responsiveness
 * Object notation and object methods for declaring and calling various game functions, LOTS of conditional logic, JSON dot notation, Math.random() and event listeners.
 
