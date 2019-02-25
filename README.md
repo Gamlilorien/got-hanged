@@ -1,6 +1,7 @@
 # GOT Hanged - An 8-bit inspired Game Of Thrones version of Hangman
 
 # WARNING: Playing may reveal spoilers!!
+[View Demo](https://gamlilorien.github.io/got-hanged/).
 
 ### Overview
 
